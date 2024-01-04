@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="180.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Student.MenuController">
+   <AnchorPane prefHeight="632.0" prefWidth="180.0">
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+         <Button fx:id="profile_btn" mnemonicParsing="false" prefWidth="160.0" text="Profile" />
+         <Button fx:id="dashboard_btn" mnemonicParsing="false" prefWidth="160.0" text="Dashboard" />
+         <Button fx:id="reservation_btn" mnemonicParsing="false" prefWidth="160.0" text="My Reservation" />
+         <Button fx:id="reserve_btn" mnemonicParsing="false" prefWidth="160.0" text="Reserve A Game" />
+         <Button fx:id="logOut_btn" mnemonicParsing="false" prefWidth="160.0" text="Log Out" />
+      </VBox>
+   </AnchorPane>
+</VBox>
