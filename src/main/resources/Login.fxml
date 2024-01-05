@@ -60,7 +60,7 @@
                         <Font name="Arial Bold" size="18.0" />
                     </font>
                 </Button>
-                <Label text="ERROR :  ">
+                <Label fx:id="error_label" text="ERROR :  ">
                     <font>
                         <Font size="13.0" />
                     </font>

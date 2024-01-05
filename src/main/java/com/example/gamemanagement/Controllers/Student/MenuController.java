@@ -1,5 +1,6 @@
 package com.example.gamemanagement.Controllers.Student;
 
+import com.example.gamemanagement.Models.Model;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
@@ -15,6 +16,15 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
+        addListeners();
+    }
+
+    private void addListeners(){
+        reservation_btn.setOnAction(event-> {
+            Model.getInstance().getViewFactory().getStudentSelectedMenuItem().set("ReservationList");
+        });
+        dashboard_btn.setOnAction(event->{
+            Model.getInstance().getViewFactory().getStudentSelectedMenuItem().set("Dashboard");
+        });
     }
 }

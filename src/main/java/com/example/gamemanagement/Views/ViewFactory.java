@@ -1,18 +1,26 @@
 package com.example.gamemanagement.Views;
 
 import com.example.gamemanagement.Controllers.Student.StudentController;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.Stack;
-
 public class ViewFactory {
     //Student views
+    private final StringProperty studentSelectedMenuItem;
     private AnchorPane dashboardView;
-    public ViewFactory(){}
+
+    private AnchorPane reservationView;
+    public ViewFactory(){
+        this.studentSelectedMenuItem = new SimpleStringProperty("");
+    }
+
+    public StringProperty getStudentSelectedMenuItem() {
+        return studentSelectedMenuItem;
+    }
 
     public AnchorPane getDashboardView(){
 
@@ -24,6 +32,18 @@ public class ViewFactory {
             }
         }
         return dashboardView;
+    }
+
+    public AnchorPane getReservationView() {
+        if(reservationView == null){
+            try{
+                reservationView = new FXMLLoader(getClass().getResource("/Student/ReservationList.fxml")).load();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return reservationView;
     }
 
     public void showLoginWindow(){
@@ -47,7 +67,10 @@ public class ViewFactory {
         }
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("hello");
+        stage.setTitle("Game Management");
         stage.show();
+    }
+    public void closeStage(Stage stage){
+        stage.close();
     }
 }

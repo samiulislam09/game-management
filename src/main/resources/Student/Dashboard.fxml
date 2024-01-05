@@ -2,10 +2,37 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.gamemanagement.Controllers.Student.DashboardController">
-    <Label layoutX="259.0" layoutY="192.0" text="Dashboard"/>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Student.DashboardController">
+   <children>
+      <VBox alignment="CENTER" layoutX="102.0" layoutY="22.0" prefHeight="152.0" prefWidth="197.0">
+         <children>
+            <Label text="Total Available games">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label text="5">
+               <font>
+                  <Font name="Arial Bold" size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="338.0" layoutY="22.0" prefHeight="152.0" prefWidth="198.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Total Available Slots">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label text="6" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
