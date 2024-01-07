@@ -1,6 +1,9 @@
 package com.example.gamemanagement.Views;
 
+import com.example.gamemanagement.Controllers.Admin.AdminController;
 import com.example.gamemanagement.Controllers.Student.StudentController;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
@@ -9,16 +12,37 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ViewFactory {
+    private AccountType loginAccountType;
     //Student views
-    private final StringProperty studentSelectedMenuItem;
+    private final ObjectProperty<StudentMenuOptions> studentSelectedMenuItem;
     private AnchorPane dashboardView;
 
     private AnchorPane reservationView;
+    private AnchorPane reserveView;
+
+    /*
+    Admin views
+     */
+    private AnchorPane addNewGameView;
+    private final ObjectProperty<AdminMenuOptions> adminSelectedMenuItem;
     public ViewFactory(){
-        this.studentSelectedMenuItem = new SimpleStringProperty("");
+        this.loginAccountType = AccountType.STUDENT;
+        this.studentSelectedMenuItem = new SimpleObjectProperty<>();
+        this.adminSelectedMenuItem = new SimpleObjectProperty<>();
     }
 
-    public StringProperty getStudentSelectedMenuItem() {
+    public AccountType getLoginAccountType() {
+        return loginAccountType;
+    }
+
+    public void setLoginAccountType(AccountType loginAccountType) {
+        this.loginAccountType = loginAccountType;
+    }
+
+    /*
+    * Student controls
+    */
+    public ObjectProperty<StudentMenuOptions> getStudentSelectedMenuItem() {
         return studentSelectedMenuItem;
     }
 
@@ -34,6 +58,18 @@ public class ViewFactory {
         return dashboardView;
     }
 
+    public AnchorPane getReserveView() {
+        if(reserveView == null){
+            try{
+                reserveView = new FXMLLoader(getClass().getResource("/Student/Reserve.fxml")).load();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return reserveView;
+    }
+
     public AnchorPane getReservationView() {
         if(reservationView == null){
             try{
@@ -46,10 +82,7 @@ public class ViewFactory {
         return reservationView;
     }
 
-    public void showLoginWindow(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
-        createStage(loader);
-    }
+
 
     public void showStudentWindow(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Student/Student.fxml"));
@@ -70,6 +103,40 @@ public class ViewFactory {
         stage.setTitle("Game Management");
         stage.show();
     }
+
+    /*
+    Admin controls
+     */
+
+    public AnchorPane getAddNewGameView() {
+        if(addNewGameView == null){
+            try{
+                addNewGameView = new FXMLLoader(getClass().getResource("/Admin/AddNewGame.fxml")).load();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return addNewGameView;
+    }
+
+    public ObjectProperty<AdminMenuOptions> getAdminSelectedMenuItem(){
+        return adminSelectedMenuItem;
+    }
+
+    public void showAdminWindow(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Admin/Admin.fxml"));
+        AdminController controller = new AdminController();
+        loader.setController(controller);
+        createStage(loader);
+
+    }
+    public void showLoginWindow(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+        createStage(loader);
+    }
+
     public void closeStage(Stage stage){
         stage.close();
     }

@@ -13,7 +13,8 @@ public class StudentController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Model.getInstance().getViewFactory().getStudentSelectedMenuItem().addListener((observable, oldVal, newVal) -> {
             switch (newVal){
-                case "ReservationList"-> student_parent.setCenter(Model.getInstance().getViewFactory().getReservationView());
+                case RESERVATION -> student_parent.setCenter(Model.getInstance().getViewFactory().getReservationView());
+                case RESERVE -> student_parent.setCenter(Model.getInstance().getViewFactory().getReserveView());
                 default -> student_parent.setCenter(Model.getInstance().getViewFactory().getDashboardView());
             }
         });

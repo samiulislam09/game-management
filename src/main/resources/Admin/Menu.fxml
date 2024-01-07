@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="180.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Admin.MenuController">
+    <AnchorPane prefHeight="632.0" prefWidth="180.0">
+        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+            <Button fx:id="dashboard_btn" mnemonicParsing="false" prefWidth="160.0" text="Dashboard">
+                <VBox.margin>
+                    <Insets bottom="10.0" />
+                </VBox.margin></Button>
+            <Button fx:id="games_btn" mnemonicParsing="false" prefWidth="160.0" text="Games">
+                <VBox.margin>
+                    <Insets bottom="10.0" />
+                </VBox.margin></Button>
+         <Button fx:id="addNewGame_btn" layoutX="10.0" layoutY="46.0" mnemonicParsing="false" prefWidth="160.0" text="Add New Game">
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin>
+         </Button>
+            <Button fx:id="reservations_btn" mnemonicParsing="false" prefWidth="160.0" text="Reservations">
+                <VBox.margin>
+                    <Insets bottom="10.0" />
+                </VBox.margin></Button>
+         <Button fx:id="clients_btn" layoutX="10.0" layoutY="82.0" mnemonicParsing="false" prefWidth="160.0" text="Clients">
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin>
+         </Button>
+            <Button fx:id="logout_btn" mnemonicParsing="false" prefWidth="160.0" text="Log Out" />
+        </VBox>
+    </AnchorPane>
+</VBox>
