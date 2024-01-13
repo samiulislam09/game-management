@@ -22,9 +22,31 @@ public class MenuController implements Initializable {
     }
 
     public void addListeners(){
+        dashboard_btn.setOnAction(event -> onDashboard());
+        addNewGame_btn.setOnAction(event -> onAddNewGame());
+        clients_btn.setOnAction(event -> onClients());
+        games_btn.setOnAction(event-> onGames());
+        reservations_btn.setOnAction(event -> onReservations());
+
 
     }
-    public void onAddNewGame(){
+    private void onAddNewGame(){
         Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.ADD_NEW_GAME);
     }
+    private void onClients(){
+        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.CLIENTS);
+    }
+
+    private void onDashboard(){
+        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.DASHBOARD);
+    }
+
+    private void onGames(){
+        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.GAMES);
+    }
+
+    private void onReservations(){
+        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.RESERVATIONS);
+    }
+
 }

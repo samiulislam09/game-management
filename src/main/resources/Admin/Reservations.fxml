@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.gamemanagement.Controllers.Admin.ReservationController">
+   <Label layoutX="397.0" layoutY="32.0" text="Reservations"/>
+   <ListView layoutX="11.2" layoutY="91.0" prefHeight="595.0" prefWidth="828.0" AnchorPane.bottomAnchor="11.0"
+             AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0"/>
+</AnchorPane>

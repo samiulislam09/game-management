@@ -24,6 +24,9 @@ public class ViewFactory {
     Admin views
      */
     private AnchorPane addNewGameView;
+    private AnchorPane clientsView;
+    private AnchorPane gamesView;
+    private AnchorPane adminReservationView;
     private final ObjectProperty<AdminMenuOptions> adminSelectedMenuItem;
     public ViewFactory(){
         this.loginAccountType = AccountType.STUDENT;
@@ -108,6 +111,17 @@ public class ViewFactory {
     Admin controls
      */
 
+    public AnchorPane showAdminDashboardView(){
+        if(dashboardView == null){
+            try{
+                dashboardView = new FXMLLoader(getClass().getResource("/Admin/Dashboard.fxml")).load();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return dashboardView;
+    }
     public AnchorPane getAddNewGameView() {
         if(addNewGameView == null){
             try{
@@ -120,10 +134,47 @@ public class ViewFactory {
         }
         return addNewGameView;
     }
+    public AnchorPane getGamesView(){
+        if(gamesView==null){
+            try {
+                gamesView = new FXMLLoader(getClass().getResource("/Admin/Games.fxml")).load();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return gamesView;
+    }
+
+    public AnchorPane getAdminReservationView() {
+        if(adminReservationView == null){
+            try{
+                adminReservationView = new FXMLLoader(getClass().getResource("/Admin/Reservations.fxml")).load();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return adminReservationView;
+    }
 
     public ObjectProperty<AdminMenuOptions> getAdminSelectedMenuItem(){
         return adminSelectedMenuItem;
     }
+
+    public AnchorPane getClientsView(){
+        if(clientsView == null){
+            try {
+                clientsView = new FXMLLoader(getClass().getResource("/Admin/Clients.fxml")).load();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return clientsView;
+    }
+
 
     public void showAdminWindow(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Admin/Admin.fxml"));
@@ -132,6 +183,7 @@ public class ViewFactory {
         createStage(loader);
 
     }
+
     public void showLoginWindow(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
         createStage(loader);
