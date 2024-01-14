@@ -27,6 +27,7 @@ public class ViewFactory {
     private AnchorPane clientsView;
     private AnchorPane gamesView;
     private AnchorPane adminReservationView;
+    private AnchorPane adminDashboardView;
     private final ObjectProperty<AdminMenuOptions> adminSelectedMenuItem;
     public ViewFactory(){
         this.loginAccountType = AccountType.STUDENT;
@@ -112,15 +113,15 @@ public class ViewFactory {
      */
 
     public AnchorPane showAdminDashboardView(){
-        if(dashboardView == null){
+        if(adminDashboardView == null){
             try{
-                dashboardView = new FXMLLoader(getClass().getResource("/Admin/Dashboard.fxml")).load();
+                adminDashboardView = new FXMLLoader(getClass().getResource("/Admin/Dashboard.fxml")).load();
             }
             catch (Exception e){
                 e.printStackTrace();
             }
         }
-        return dashboardView;
+        return adminDashboardView;
     }
     public AnchorPane getAddNewGameView() {
         if(addNewGameView == null){
@@ -181,7 +182,6 @@ public class ViewFactory {
         AdminController controller = new AdminController();
         loader.setController(controller);
         createStage(loader);
-
     }
 
     public void showLoginWindow(){
