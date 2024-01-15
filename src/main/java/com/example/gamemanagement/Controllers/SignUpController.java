@@ -1,15 +1,18 @@
 package com.example.gamemanagement.Controllers;
 
 import com.example.gamemanagement.db.DBconnection;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,7 +48,10 @@ public class SignUpController {
 
         int err = preparedStatement.executeUpdate();
         if(err != 0){
-            System.out.println("User created successfully");
+            error_lbl.setText("User Created Successfully");
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_lbl.setText("")));
+            timeline.setCycleCount(1);
+            timeline.play();
         }
     }
 }
