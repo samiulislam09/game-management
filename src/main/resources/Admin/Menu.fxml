@@ -15,11 +15,6 @@
                 <VBox.margin>
                     <Insets bottom="10.0" />
                 </VBox.margin></Button>
-         <Button fx:id="addNewGame_btn" layoutX="10.0" layoutY="46.0" mnemonicParsing="false" prefWidth="160.0" text="Add New Game">
-            <VBox.margin>
-               <Insets bottom="10.0" />
-            </VBox.margin>
-         </Button>
             <Button fx:id="reservations_btn" mnemonicParsing="false" prefWidth="160.0" text="Reservations">
                 <VBox.margin>
                     <Insets bottom="10.0" />

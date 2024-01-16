@@ -19,7 +19,6 @@ public class MenuController implements Initializable {
     public Button reservations_btn;
     public Button clients_btn;
     public Button logout_btn;
-    public Button addNewGame_btn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -28,7 +27,6 @@ public class MenuController implements Initializable {
 
     public void addListeners(){
         dashboard_btn.setOnAction(event -> onDashboard());
-        addNewGame_btn.setOnAction(event -> onAddNewGame());
         clients_btn.setOnAction(event -> onClients());
         games_btn.setOnAction(event-> onGames());
         reservations_btn.setOnAction(event -> onReservations());
@@ -42,9 +40,7 @@ public class MenuController implements Initializable {
 
 
     }
-    private void onAddNewGame(){
-        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.ADD_NEW_GAME);
-    }
+
     private void onClients(){
         Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.CLIENTS);
     }

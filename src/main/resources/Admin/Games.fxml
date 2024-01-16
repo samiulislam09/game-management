@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="750.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Admin.GamesController">
-    <Label layoutX="386.0" layoutY="23.0" text="All Games" />
-    <ListView layoutX="19.0" layoutY="138.0" prefHeight="534.0" prefWidth="775.0" />
+    <Label layoutX="354.0" layoutY="23.0" text="Games">
+      <font>
+         <Font name="System Bold" size="29.0" />
+      </font></Label>
+   <TableView fx:id="table_games" layoutX="349.0" layoutY="97.0" prefHeight="459.0" prefWidth="438.0">
+     <columns>
+       <TableColumn fx:id="col_id" prefWidth="57.60003662109375" text="ID" />
+       <TableColumn fx:id="col_name" prefWidth="159.199951171875" text="Name" />
+         <TableColumn fx:id="col_capacity" prefWidth="121.60003662109375" text="Capacity" />
+         <TableColumn fx:id="col_delete" minWidth="0.0" prefWidth="98.40008544921875" text="Delete" />
+     </columns>
+   </TableView>
+    <AnchorPane layoutX="14.0" layoutY="97.0" prefHeight="333.0" prefWidth="322.0" style="-fx-background-color: #1e81b0;">
+        <Label layoutX="114.0" layoutY="14.0" text="Add a new game">
+           <font>
+               <Font name="System Bold" size="12.0" />
+           </font>
+        </Label>
+        <Label layoutX="35.0" layoutY="83.0" text="Name:" />
+        <TextField fx:id="input_name" layoutX="35.0" layoutY="108.0" prefHeight="26.0" prefWidth="270.0" promptText="Enter the game name" />
+        <Label layoutX="35.0" layoutY="147.0" text="Number of players:" />
+        <TextField fx:id="input_capacity" layoutX="35.0" layoutY="175.0" prefHeight="26.0" prefWidth="270.0" promptText="How many players can play the game?" />
+        <Button fx:id="add_btn" layoutX="27.0" layoutY="236.0" mnemonicParsing="false" onAction="#onAdd" prefHeight="26.0" prefWidth="84.0" text="Add" />
+        <Button layoutX="128.0" layoutY="236.0" mnemonicParsing="false" onAction="#onUpdate" prefHeight="26.0" prefWidth="84.0" text="Update" />
+        <Button fx:id="delete_btn" layoutX="224.0" layoutY="236.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="26.0" prefWidth="84.0" text="Delete" />
+      <Label fx:id="error_label" layoutX="27.0" layoutY="287.0" prefHeight="18.0" prefWidth="279.0" textFill="#fcfcfc" />
+    </AnchorPane>
 </AnchorPane>

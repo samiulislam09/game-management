@@ -123,18 +123,7 @@ public class ViewFactory {
         }
         return adminDashboardView;
     }
-    public AnchorPane getAddNewGameView() {
-        if(addNewGameView == null){
-            try{
-                addNewGameView = new FXMLLoader(getClass().getResource("/Admin/AddNewGame.fxml")).load();
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
 
-        }
-        return addNewGameView;
-    }
     public AnchorPane getGamesView(){
         if(gamesView==null){
             try {
