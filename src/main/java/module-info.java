@@ -12,4 +12,5 @@ module com.example.gamemanagement {
     exports com.example.gamemanagement.Controllers.Student;
     exports com.example.gamemanagement.Models;
     exports com.example.gamemanagement.Views;
+    exports com.example.gamemanagement.utils;
 }
