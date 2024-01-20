@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Student.ReservationList">
-   <children>
-      <Label layoutX="356.0" layoutY="27.0" text="My reservations">
-         <font>
-            <Font name="Arial Bold" size="18.0" />
-         </font></Label>
-      <ListView layoutX="14.0" layoutY="92.0" prefHeight="595.0" prefWidth="827.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="92.0" />
-   </children>
+<AnchorPane prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Student.ReservationListController">
+   <Label layoutX="356.0" layoutY="27.0" text="My reservations">
+      <font>
+         <Font name="Arial Bold" size="18.0" />
+      </font>
+   </Label>
+   <TableView fx:id="table_reservation" layoutX="8.0" layoutY="91.0" prefHeight="600.0" prefWidth="834.0">
+     <columns>
+       <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
+       <TableColumn fx:id="col_game_name" prefWidth="273.0" text="Game Name" />
+         <TableColumn fx:id="col_start_time" prefWidth="158.0" text="Start Time" />
+         <TableColumn fx:id="col_ending_time" prefWidth="165.0" text="Ending Time" />
+         <TableColumn fx:id="col_cancel_reservation" prefWidth="161.0" text="Cancel Reservation" />
+     </columns>
+   </TableView>
+   <Label fx:id="error_label" layoutX="27.0" layoutY="56.0" prefHeight="18.0" prefWidth="805.0" />
 </AnchorPane>

@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Admin.ClientsController">
-    <Label layoutX="386.0" layoutY="14.0" text="Clients"/>
-    <ListView layoutX="10.0" layoutY="182.0" prefHeight="487.0" prefWidth="780.0"/>
+<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Admin.ClientsController">
+    <Label layoutX="366.0" layoutY="27.0" text="Users">
+      <font>
+         <Font name="System Bold" size="27.0" />
+      </font></Label>
+   <TableView fx:id="Users_list" layoutX="81.0" layoutY="94.0" prefHeight="581.0" prefWidth="646.0">
+     <columns>
+       <TableColumn fx:id="col_id" prefWidth="107.20001220703125" text="ID" />
+       <TableColumn fx:id="col_username" prefWidth="328.0" text="Username" />
+         <TableColumn fx:id="col_delete" minWidth="0.0" prefWidth="211.20001220703125" text="Delete User" />
+     </columns>
+   </TableView>
+   <Label fx:id="error_label" layoutX="81.0" layoutY="66.0" />
 </AnchorPane>

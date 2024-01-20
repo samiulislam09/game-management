@@ -1,5 +1,73 @@
 package com.example.gamemanagement.Controllers.Admin;
 
-public class ClientsController {
+import com.example.gamemanagement.db.DBconnection;
+import com.example.gamemanagement.utils.Clients;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+public class ClientsController implements Initializable {
+    public TableView<Clients> Users_list;
+    public TableColumn<Clients, String> col_id;
+    public TableColumn<Clients, String> col_username;
+    public TableColumn<Clients, String> col_delete;
+    public Label error_label;
+
+    public void table(){
+        ObservableList<Clients> list = FXCollections.observableArrayList();
+        try {
+            Connection connection = DBconnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users where isadmin=0");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                list.add(new Clients(resultSet.getString("id"), resultSet.getString("username")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        col_id.setCellValueFactory(data -> data.getValue().idProperty());
+        col_username.setCellValueFactory(data -> data.getValue().nameProperty());
+        Users_list.setItems(list);
+
+        col_delete.setCellFactory(param -> new TableCell<>() {
+            private final Button deleteButton = new Button("Delete");
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                    return;
+                }
+                setGraphic(deleteButton);
+                deleteButton.setOnAction(event -> {
+                    Clients client = getTableView().getItems().get(getIndex());
+                    Users_list.getItems().remove(client);
+                    try {
+                        Connection connection = DBconnection.getInstance().getConnection();
+                        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users WHERE id=?");
+                        preparedStatement.setString(1, client.getId());
+                        preparedStatement.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        });
+
+
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        table();
+
+    }
 }

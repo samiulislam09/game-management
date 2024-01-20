@@ -68,7 +68,6 @@ public class GamesController implements Initializable {
         col_capacity.setCellValueFactory(data -> data.getValue().capacityProperty());
         table_games.setItems(list);
 
-        // add a delete button to each row
         col_delete.setCellFactory(param -> new TableCell<Games, String>() {
             private final Button deleteButton = new Button("Delete");
 
