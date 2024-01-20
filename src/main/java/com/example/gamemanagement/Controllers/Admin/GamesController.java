@@ -74,27 +74,35 @@ public class GamesController implements Initializable {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
-                // ensure that the cell is created only on non-empty rows
                 if (empty) {
                     setGraphic(null);
                 } else {
                     deleteButton.setOnAction(event -> {
                         Games games = getTableView().getItems().get(getIndex());
-                        try {
-                            Connection connection = DBconnection.getInstance().getConnection();
-                            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM games WHERE id = ?");
-                            preparedStatement.setObject(1, games.getId());
-                            int err = preparedStatement.executeUpdate();
-                            if(err != 0){
-                                error_label.setText("Games deleted Successfully");
-                                table();
-                                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_label.setText("")));
-                                timeline.setCycleCount(1);
-                                timeline.play();
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("Confirmation Dialog");
+                        alert.setHeaderText("Delete Game");
+                        alert.setContentText("Are you sure you want to delete the game?");
+                        alert.showAndWait().ifPresent(response -> {
+                            if (response == javafx.scene.control.ButtonType.OK) {
+                                try {
+                                    Connection connection = DBconnection.getInstance().getConnection();
+                                    PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM games WHERE id = ?");
+                                    preparedStatement.setObject(1, games.getId());
+                                    int err = preparedStatement.executeUpdate();
+                                    if(err != 0){
+                                        error_label.setText("Games deleted Successfully");
+                                        table();
+                                        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_label.setText("")));
+                                        timeline.setCycleCount(1);
+                                        timeline.play();
+                                    }
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                }
                             }
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
+                        });
+
                     });
                     setGraphic(deleteButton);
                 }

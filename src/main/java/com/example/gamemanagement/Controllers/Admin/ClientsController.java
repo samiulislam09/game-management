@@ -49,16 +49,25 @@ public class ClientsController implements Initializable {
                 }
                 setGraphic(deleteButton);
                 deleteButton.setOnAction(event -> {
-                    Clients client = getTableView().getItems().get(getIndex());
-                    Users_list.getItems().remove(client);
-                    try {
-                        Connection connection = DBconnection.getInstance().getConnection();
-                        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users WHERE id=?");
-                        preparedStatement.setString(1, client.getId());
-                        preparedStatement.executeUpdate();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation Dialog");
+                    alert.setHeaderText("Delete Client");
+                    alert.setContentText("Are you sure you want to delete this client?");
+                    alert.showAndWait().ifPresent(response -> {
+                        if (response == javafx.scene.control.ButtonType.OK) {
+                            Clients client = getTableView().getItems().get(getIndex());
+                            Users_list.getItems().remove(client);
+                            try {
+                                Connection connection = DBconnection.getInstance().getConnection();
+                                PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users WHERE id=?");
+                                preparedStatement.setString(1, client.getId());
+                                preparedStatement.executeUpdate();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
                 });
             }
         });
