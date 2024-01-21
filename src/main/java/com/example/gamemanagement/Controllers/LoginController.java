@@ -1,9 +1,9 @@
 package com.example.gamemanagement.Controllers;
 
-import com.example.gamemanagement.Controllers.Admin.AdminController;
 import com.example.gamemanagement.Models.Model;
 import com.example.gamemanagement.Views.AccountType;
 import com.example.gamemanagement.db.DBconnection;
+import com.example.gamemanagement.utils.UserName;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -60,6 +60,7 @@ public class LoginController implements Initializable {
     }
 
     public void loginBtn(ActionEvent actionEvent) {
+        UserName userName = new UserName();
         try{
             String username = usernameField.getText();
             String password = password_selector.getText();
@@ -69,6 +70,7 @@ public class LoginController implements Initializable {
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
+                userName.setUsername(username);
                 onLogin();
             }
             else{
