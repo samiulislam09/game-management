@@ -2,6 +2,7 @@ package com.example.gamemanagement.Controllers.Admin;
 
 import com.example.gamemanagement.Models.Model;
 import com.example.gamemanagement.Views.AdminMenuOptions;
+import com.example.gamemanagement.utils.UserName;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -33,6 +34,8 @@ public class MenuController implements Initializable {
         logout_btn.setOnAction(event -> {
             try {
                 loadPage("/Login.fxml");
+                UserName user = new UserName();
+                user.setUsername("");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
