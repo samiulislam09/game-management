@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.gamemanagement.Controllers.Admin.ReservationController">
-   <Label layoutX="397.0" layoutY="32.0" text="Reservations"/>
-   <ListView layoutX="11.2" layoutY="91.0" prefHeight="595.0" prefWidth="828.0" AnchorPane.bottomAnchor="11.0"
-             AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0"/>
+<AnchorPane prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Admin.ReservationController">
+   <Label layoutX="397.0" layoutY="32.0" text="Reservations" />
+   <TableView fx:id="table_reservation" layoutX="8.0" layoutY="91.0" prefHeight="600.0" prefWidth="834.0">
+      <columns>
+         <TableColumn fx:id="col_game_name" prefWidth="128.79996490478516" text="Game Name" />
+         <TableColumn fx:id="col_reservation_date" prefWidth="168.0" text="Reservation Date" />
+         <TableColumn fx:id="col_reservation_time" prefWidth="173.5999755859375" text="Reservation Time" />
+         <TableColumn fx:id="col_reserved_at" minWidth="0.0" prefWidth="188.80001831054688" text="Reserved At" />
+         <TableColumn fx:id="col_cancel_reservation" minWidth="0.0" prefWidth="170.40008544921875" text="Cancel Reservation" />
+      </columns>
+   </TableView>
+   <Label fx:id="error_label" layoutX="27.0" layoutY="56.0" prefHeight="18.0" prefWidth="805.0" />
 </AnchorPane>

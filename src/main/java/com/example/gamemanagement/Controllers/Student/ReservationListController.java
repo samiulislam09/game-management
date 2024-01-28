@@ -1,8 +1,8 @@
 package com.example.gamemanagement.Controllers.Student;
 
 import com.example.gamemanagement.db.DBconnection;
-import com.example.gamemanagement.utils.Games;
 import com.example.gamemanagement.utils.Reservation;
+import com.example.gamemanagement.utils.UserInfo;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -21,70 +21,68 @@ import java.util.ResourceBundle;
 public class ReservationListController implements Initializable {
     public TableColumn<Reservation, String> col_id;
     public TableColumn<Reservation, String> col_game_name;
-    public TableColumn<Reservation, String> col_start_time;
-    public TableColumn<Reservation, String> col_ending_time;
     public TableColumn<Reservation, String> col_cancel_reservation;
     public Label error_label;
     public TableView<Reservation> table_reservation;
+    public TableColumn<Reservation, String> col_reservation_date;
+    public TableColumn<Reservation, String> col_reservation_time;
+    public TableColumn<Reservation, String> col_reserved_at;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
-
-
-
-
+        table();
     }
 
-
-        // make a table view of reservations for the student to see his reservations and cancel them if he wants to
         public void table(){
             ObservableList<Reservation> list = FXCollections.observableArrayList();
             try {
                 Connection connection = DBconnection.getInstance().getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM reservation");
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM reservations WHERE reservationId = ? ");
+                preparedStatement.setObject(1, UserInfo.getInstance().getUserId());
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()){
-                    list.add(new Reservation(resultSet.getString("id"), resultSet.getString("name"), resultSet.getString("start_time"), resultSet.getString("ending_time")));
+                    list.add(new Reservation(resultSet.getString("id"), resultSet.getString("gameName"), resultSet.getString("reservationDate"), resultSet.getString("reservationTime"), resultSet.getString("reservedAt")));
                 }
             } catch (SQLException throwable) {
                 throwable.printStackTrace();
             }
-            col_id.setCellValueFactory(data -> data.getValue().idProperty());
-            col_game_name.setCellValueFactory(data -> data.getValue().nameProperty());
-            col_start_time.setCellValueFactory(data -> data.getValue().startTimeProperty());
-            col_ending_time.setCellValueFactory(data -> data.getValue().endingTimeProperty());
-            col_cancel_reservation.setCellValueFactory(data -> data.getValue().cancelReservationProperty());
+            // set the table columns
+            col_id.setCellValueFactory(param -> param.getValue().idProperty());
+            col_game_name.setCellValueFactory(param -> param.getValue().gameNameProperty());
+            col_reservation_date.setCellValueFactory(param -> param.getValue().reservationDateProperty());
+            col_reservation_time.setCellValueFactory(param -> param.getValue().reservationTimeProperty());
+            col_reserved_at.setCellValueFactory(param -> param.getValue().reservedAtProperty());
             table_reservation.setItems(list);
-            col_cancel_reservation.setCellFactory(param -> new TableCell<Reservation, String>() {
-                private final Button cancel_btn = new Button("Cancel");
+            col_cancel_reservation.setCellFactory(param -> new TableCell<>() {
+                private final Button cancel = new Button("Cancel");
+
+
+                {
+                    cancel.setOnAction(event -> {
+                        Reservation reservation = getTableView().getItems().get(getIndex());
+                        try {
+                            Connection connection = DBconnection.getInstance().getConnection();
+                            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM reservations WHERE id = ?");
+                            preparedStatement.setObject(1, reservation.getReservationId());
+                            preparedStatement.executeUpdate();
+                            error_label.setText("Reservation cancelled successfully");
+                            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), event1 -> error_label.setText("")));
+                            timeline.play();
+                            table();
+                        } catch (SQLException throwable) {
+                            throwable.printStackTrace();
+                        }
+                    });
+                }
+
                 @Override
                 protected void updateItem(String s, boolean b) {
                     super.updateItem(s, b);
                     if (b) {
                         setGraphic(null);
                     } else {
-                        setGraphic(cancel_btn);
-                        cancel_btn.setOnAction(event -> {
-                            Reservation reservation = getTableView().getItems().get(getIndex());
-                            try {
-                                Connection connection = DBconnection.getInstance().getConnection();
-                                PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM reservation WHERE id = ?");
-                                preparedStatement.setObject(1, reservation.getId());
-                                int err = preparedStatement.executeUpdate();
-                                if(err != 0){
-                                    error_label.setText("Reservation canceled Successfully");
-                                    table();
-                                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_label.setText("")));
-                                    timeline.setCycleCount(1);
-                                    timeline.play();
-                                }
-                            } catch (SQLException throwable) {
-                                throwable.printStackTrace();
-                            }
-                        });
+                        setGraphic(cancel);
                     }
                 }
             });
