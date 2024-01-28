@@ -16,4 +16,5 @@
    <Button fx:id="reserve_btn" layoutX="344.0" layoutY="273.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="128.0" text="Reserve" />
    <ChoiceBox fx:id="hour_choicebox" layoutX="318.0" layoutY="165.0" prefHeight="26.0" prefWidth="180.0" value="Available Hours" />
    <ChoiceBox fx:id="minute_choicebox" layoutX="318.0" layoutY="210.0" prefHeight="26.0" prefWidth="180.0" value="Available Minutes" />
+   <Label fx:id="error_msg" layoutX="318.0" layoutY="337.0" />
 </AnchorPane>
