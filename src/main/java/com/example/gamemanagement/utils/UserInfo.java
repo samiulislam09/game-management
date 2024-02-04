@@ -3,6 +3,7 @@ package com.example.gamemanagement.utils;
 public class UserInfo {
     private static UserInfo instance;
     private String userId;
+    private boolean isAdmin;
 
     public UserInfo() {
     }
@@ -18,5 +19,12 @@ public class UserInfo {
 
     public String getUserId() {
         return userId;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+    public boolean getIsAdmin() {
+        return isAdmin;
     }
 }

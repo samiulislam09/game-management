@@ -70,6 +70,25 @@ public class ReserveController implements Initializable {
                 capacity = resultSet1.getInt("capacity");
             }
 
+            PreparedStatement singlePlayerInfo = connection.prepareStatement("SELECT * FROM reservations WHERE reservationDate = ? AND slot = ? AND gameName = ? AND reservationId = ?");
+            singlePlayerInfo.setString(1, reservation_date.getValue().toString());
+            singlePlayerInfo.setString(2, slot);
+            singlePlayerInfo.setString(3, games_dropdown.getValue().toString());
+            singlePlayerInfo.setString(4, userId);
+            ResultSet resultSet2 = singlePlayerInfo.executeQuery();
+            int singlePlayerCount = 0;
+            while (resultSet2.next()){
+                singlePlayerCount++;
+            }
+            if (singlePlayerCount >= 1){
+                error_msg.setText("You have already reserved this slot. You can only reserve a slot a single time!!!");
+                error_msg.setStyle("-fx-text-fill: red");
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_msg.setText("")));
+                timeline.setCycleCount(1);
+                timeline.play();
+                return;
+            }
+
             if (count >= capacity){
                 error_msg.setText("Slot is full. Please select another slot!!!");
                 error_msg.setStyle("-fx-text-fill: red");

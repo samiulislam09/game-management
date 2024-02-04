@@ -24,7 +24,6 @@ import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-    public ChoiceBox<AccountType> acc_selector;
     public TextField password_selector;
     public Button login_btn;
     public TextField usernameField;
@@ -33,19 +32,18 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        acc_selector.setItems(FXCollections.observableArrayList(AccountType.STUDENT, AccountType.ADMIN));
-        acc_selector.setValue(Model.getInstance().getViewFactory().getLoginAccountType());
-        acc_selector.valueProperty().addListener(observable -> Model.getInstance().getViewFactory().setLoginAccountType(acc_selector.getValue()));
+        login_btn.setOnAction(this::loginBtn);
     }
 
     private void onLogin() {
         Stage stage = (Stage) usernameField.getScene().getWindow();
         Model.getInstance().getViewFactory().closeStage(stage);
-        if(Model.getInstance().getViewFactory().getLoginAccountType() == AccountType.STUDENT){
-            Model.getInstance().getViewFactory().showStudentWindow();
+
+        if(UserInfo.getInstance().getIsAdmin()){
+            Model.getInstance().getViewFactory().showAdminWindow();
         }
         else{
-            Model.getInstance().getViewFactory().showAdminWindow();
+            Model.getInstance().getViewFactory().showStudentWindow();
         }
     }
 
@@ -60,7 +58,6 @@ public class LoginController implements Initializable {
     }
 
     public void loginBtn(ActionEvent actionEvent) {
-        UserInfo userName = new UserInfo();
         try{
             String username = usernameField.getText();
             String password = password_selector.getText();
@@ -69,8 +66,11 @@ public class LoginController implements Initializable {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
+
+
             if(resultSet.next()){
                 UserInfo.getInstance().setUserId(resultSet.getString("id"));
+                UserInfo.getInstance().setIsAdmin(resultSet.getBoolean("isAdmin"));
                 onLogin();
             }
             else{
