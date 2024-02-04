@@ -15,8 +15,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class ReserveController implements Initializable {
@@ -37,8 +35,6 @@ public class ReserveController implements Initializable {
         ObservableList list = FXCollections.observableArrayList();
         list.addAll("10:00-10:59", "11:00-11:59", "12:00-12:59", "13:00-13:59", "14:00-14:59", "15:00-15:59", "16:00-16:59");
         slot_choice_box.setItems(list);
-
-
     }
 
     public void reserve(){
@@ -56,18 +52,35 @@ public class ReserveController implements Initializable {
             };
             String userId = UserInfo.getInstance().getUserId();
             Connection connection = DBconnection.getInstance().getConnection();
+            PreparedStatement preparedStatement1 = connection.prepareStatement("SELECT * FROM reservations WHERE reservationDate = ? AND slot = ? AND gameName = ?");
+            preparedStatement1.setString(1, reservation_date.getValue().toString());
+            preparedStatement1.setString(2, slot);
+            preparedStatement1.setString(3, games_dropdown.getValue().toString());
+            ResultSet resultSet = preparedStatement1.executeQuery();
+            if (resultSet.next()){
+                error_msg.setText("Slot already reserved. Please select another slot!!!");
+                error_msg.setStyle("-fx-text-fill: red");
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_msg.setText("")));
+                timeline.setCycleCount(1);
+                timeline.play();
+                return;
+            }
+
+
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO reservations (reservationId, gameName, reservationDate, slot) VALUES (?,?,?,?)");
             preparedStatement.setString(1, userId);
             preparedStatement.setString(2, games_dropdown.getValue().toString());
             preparedStatement.setString(3, reservation_date.getValue().toString());
             preparedStatement.setString(4, slot);
             preparedStatement.executeUpdate();
-            error_msg.setText("Reservation Successful");
+            error_msg.setText("YAY Your reservation is created successfully");
+            error_msg.setStyle("-fx-text-fill: green");
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_msg.setText("")));
             timeline.setCycleCount(1);
             timeline.play();
         } catch (Exception e) {
             error_msg.setText("Something went wrong");
+            error_msg.setStyle("-fx-text-fill: red");
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), err -> error_msg.setText("")));
             timeline.setCycleCount(1);
             timeline.play();
