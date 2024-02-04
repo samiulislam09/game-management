@@ -11,10 +11,10 @@
       </font></Label>
    <TableView fx:id="table_games" layoutX="349.0" layoutY="97.0" prefHeight="569.0" prefWidth="438.0">
      <columns>
-       <TableColumn fx:id="col_id" prefWidth="57.60003662109375" text="ID" />
-       <TableColumn fx:id="col_name" prefWidth="159.199951171875" text="Name" />
-         <TableColumn fx:id="col_capacity" prefWidth="109.4000244140625" text="Capacity" />
-         <TableColumn fx:id="col_delete" minWidth="0.0" prefWidth="112.20001220703125" text="Delete" />
+       <TableColumn fx:id="col_id" prefWidth="57.60003662109375" style="-fx-alignment: CENTER;" text="ID" />
+       <TableColumn fx:id="col_name" prefWidth="159.199951171875" style="-fx-alignment: CENTER;" text="Name" />
+       <TableColumn fx:id="col_capacity" prefWidth="109.4000244140625" style="-fx-alignment: CENTER;" text="Capacity" />
+       <TableColumn fx:id="col_delete" minWidth="0.0" prefWidth="112.20001220703125" style="-fx-alignment: CENTER;" text="Delete" />
      </columns>
    </TableView>
     <AnchorPane layoutX="14.0" layoutY="97.0" prefHeight="333.0" prefWidth="322.0" style="-fx-background-color: #1e81b0;">

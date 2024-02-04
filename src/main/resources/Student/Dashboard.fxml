@@ -35,5 +35,33 @@
             </Label>
          </children>
       </VBox>
+      <VBox alignment="CENTER" layoutX="123.0" layoutY="226.0" prefHeight="152.0" prefWidth="266.0" styleClass="dashboard_vbox">
+         <children>
+            <Label text="Total Game I Have Reserved">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label text="5">
+               <font>
+                  <Font name="Arial Bold" size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="479.0" layoutY="226.0" prefHeight="152.0" prefWidth="266.0" styleClass="dashboard_vbox">
+         <children>
+            <Label text="Total Available games">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label text="5">
+               <font>
+                  <Font name="Arial Bold" size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

@@ -57,15 +57,27 @@ public class ReserveController implements Initializable {
             preparedStatement1.setString(2, slot);
             preparedStatement1.setString(3, games_dropdown.getValue().toString());
             ResultSet resultSet = preparedStatement1.executeQuery();
-            if (resultSet.next()){
-                error_msg.setText("Slot already reserved. Please select another slot!!!");
+            int count = 0;
+            while (resultSet.next()){
+                count++;
+            }
+
+            PreparedStatement preparedStatement2 = connection.prepareStatement("SELECT * FROM games WHERE name = ?");
+            preparedStatement2.setString(1, games_dropdown.getValue().toString());
+            ResultSet resultSet1 = preparedStatement2.executeQuery();
+            int capacity = 0;
+            while (resultSet1.next()){
+                capacity = resultSet1.getInt("capacity");
+            }
+
+            if (count >= capacity){
+                error_msg.setText("Slot is full. Please select another slot!!!");
                 error_msg.setStyle("-fx-text-fill: red");
                 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_msg.setText("")));
                 timeline.setCycleCount(1);
                 timeline.play();
                 return;
             }
-
 
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO reservations (reservationId, gameName, reservationDate, slot) VALUES (?,?,?,?)");
             preparedStatement.setString(1, userId);

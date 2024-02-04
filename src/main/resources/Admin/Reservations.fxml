@@ -4,16 +4,20 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Admin.ReservationController">
-   <Label layoutX="397.0" layoutY="32.0" text="Reservations" />
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Admin.ReservationController">
+   <Label layoutX="397.0" layoutY="32.0" text="Reservations">
+      <font>
+         <Font name="Arial Bold" size="18.0" />
+      </font></Label>
    <TableView fx:id="table_reservation" layoutX="8.0" layoutY="91.0" prefHeight="600.0" prefWidth="834.0">
       <columns>
-         <TableColumn fx:id="col_game_name" prefWidth="160.0" text="Game Name" />
-         <TableColumn fx:id="col_reservation_date" prefWidth="148.79998779296875" text="Reservation Date" />
-         <TableColumn fx:id="col_reservation_time" minWidth="0.0" prefWidth="155.20001220703125" text="Reservation Time" />
-         <TableColumn fx:id="col_reserved_at" minWidth="0.0" prefWidth="212.79995727539062" text="Reserved At" />
-         <TableColumn fx:id="col_cancel_reservation" maxWidth="439.1999816894531" minWidth="0.0" prefWidth="129.60003662109375" text="Cancel Reservation" />
+         <TableColumn fx:id="col_game_name" prefWidth="172.79999351501465" style="-fx-alignment: CENTER;" text="Game Name" />
+         <TableColumn fx:id="col_reservation_date" prefWidth="127.20001220703125" style="-fx-alignment: CENTER;" text="Reserved At" />
+         <TableColumn fx:id="col_reservation_time" minWidth="0.0" prefWidth="168.79998779296875" style="-fx-alignment: CENTER;" text="Reservation Time" />
+         <TableColumn fx:id="col_reserved_at" minWidth="0.0" prefWidth="182.39993286132812" style="-fx-alignment: CENTER;" text="Reservation Date" />
+         <TableColumn fx:id="col_cancel_reservation" maxWidth="439.1999816894531" minWidth="0.0" prefWidth="183.19989013671875" style="-fx-alignment: CENTER;" text="Cancel Reservation" />
       </columns>
    </TableView>
    <Label fx:id="error_label" layoutX="27.0" layoutY="56.0" prefHeight="18.0" prefWidth="805.0" />

@@ -39,7 +39,7 @@ public class ReservationController implements Initializable {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM reservations");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                list.add(new Reservation(resultSet.getString("id"), resultSet.getString("gameName"), resultSet.getString("reservationDate"), resultSet.getString("reservationTime"), resultSet.getString("reservedAt")));
+                list.add(new Reservation(resultSet.getString("id"), resultSet.getString("gameName"), resultSet.getString("reservationDate"), resultSet.getString("slot"), resultSet.getString("reservedAt")));
             }
         } catch (SQLException throwable) {
             throwable.printStackTrace();

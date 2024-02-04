@@ -13,9 +13,9 @@
       </font></Label>
    <TableView fx:id="Users_list" layoutX="81.0" layoutY="94.0" prefHeight="581.0" prefWidth="646.0">
      <columns>
-       <TableColumn fx:id="col_id" prefWidth="107.20001220703125" text="ID" />
-       <TableColumn fx:id="col_username" prefWidth="328.0" text="Username" />
-         <TableColumn fx:id="col_delete" minWidth="0.0" prefWidth="211.20001220703125" text="Delete User" />
+       <TableColumn fx:id="col_id" prefWidth="107.20001220703125" style="-fx-alignment: CENTER;" text="ID" />
+       <TableColumn fx:id="col_username" prefWidth="328.0" style="-fx-alignment: CENTER;" text="Username" />
+         <TableColumn fx:id="col_delete" minWidth="0.0" prefWidth="211.20001220703125" style="-fx-alignment: CENTER;" text="Delete User" />
      </columns>
    </TableView>
    <Label fx:id="error_label" layoutX="81.0" layoutY="66.0" />
