@@ -24,43 +24,43 @@ public class ReserveController implements Initializable {
     public ChoiceBox games_dropdown;
     public DatePicker reservation_date;
     public Button reserve_btn;
-    public ChoiceBox hour_choicebox;
-    public ChoiceBox minute_choicebox;
+    public ChoiceBox slot_choice_box;
     public Label error_msg;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dropDownData();
-        time();
+        slots();
         reserve_btn.setOnAction(actionEvent -> reserve());
-
     }
-    public void time(){
-        ObservableList<Integer> hourList = FXCollections.observableArrayList();
-        ObservableList<Integer> minuteList = FXCollections.observableArrayList();
-        for (int hour = 0; hour < 24; hour += 1) {
-            hourList.add(hour);
-        }
-        hour_choicebox.setItems(hourList);
-        for (int minute = 0; minute < 60; minute += 5) {
-            minuteList.add(minute);
-        }
-        minute_choicebox.setItems(minuteList);
+    public void slots(){
+        ObservableList list = FXCollections.observableArrayList();
+        list.addAll("10:00-10:59", "11:00-11:59", "12:00-12:59", "13:00-13:59", "14:00-14:59", "15:00-15:59", "16:00-16:59");
+        slot_choice_box.setItems(list);
+
+
     }
 
     public void reserve(){
         try {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
+            String slot = slot_choice_box.getValue().toString();
+            slot = switch (slot) {
+                case "10:00-10:59" -> "1";
+                case "11:00-11:59" -> "2";
+                case "12:00-12:59" -> "3";
+                case "13:00-13:59" -> "4";
+                case "14:00-14:59" -> "5";
+                case "15:00-15:59" -> "6";
+                case "16:00-16:59" -> "7";
+                default -> slot;
+            };
             String userId = UserInfo.getInstance().getUserId();
             Connection connection = DBconnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO reservations (reservationId, gameName, reservationDate, reservationTime,reservedAt) VALUES (?,?,?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO reservations (reservationId, gameName, reservationDate, slot) VALUES (?,?,?,?)");
             preparedStatement.setString(1, userId);
             preparedStatement.setString(2, games_dropdown.getValue().toString());
             preparedStatement.setString(3, reservation_date.getValue().toString());
-            preparedStatement.setString(4, hour_choicebox.getValue().toString() + ":" + minute_choicebox.getValue().toString());
-            preparedStatement.setString(5, dtf.format(now));
-            System.out.println(userId);
+            preparedStatement.setString(4, slot);
             preparedStatement.executeUpdate();
             error_msg.setText("Reservation Successful");
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_msg.setText("")));
@@ -89,4 +89,5 @@ public class ReserveController implements Initializable {
             e.printStackTrace();
         }
     }
+
 }

@@ -25,13 +25,15 @@ public class ReservationListController implements Initializable {
     public Label error_label;
     public TableView<Reservation> table_reservation;
     public TableColumn<Reservation, String> col_reservation_date;
-    public TableColumn<Reservation, String> col_reservation_time;
+    public TableColumn<Reservation, String> col_reservation_slot;
     public TableColumn<Reservation, String> col_reserved_at;
+    public Button btn_refresh;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         table();
+        btn_refresh.setOnAction(event -> table());
     }
 
         public void table(){
@@ -42,16 +44,14 @@ public class ReservationListController implements Initializable {
                 preparedStatement.setObject(1, UserInfo.getInstance().getUserId());
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()){
-                    list.add(new Reservation(resultSet.getString("id"), resultSet.getString("gameName"), resultSet.getString("reservationDate"), resultSet.getString("reservationTime"), resultSet.getString("reservedAt")));
+                    list.add(new Reservation(resultSet.getString("id"), resultSet.getString("gameName"), resultSet.getString("reservationDate"), resultSet.getString("slot"), resultSet.getString("reservedAt")));
                 }
             } catch (SQLException throwable) {
                 throwable.printStackTrace();
             }
-            // set the table columns
-            col_id.setCellValueFactory(param -> param.getValue().idProperty());
             col_game_name.setCellValueFactory(param -> param.getValue().gameNameProperty());
             col_reservation_date.setCellValueFactory(param -> param.getValue().reservationDateProperty());
-            col_reservation_time.setCellValueFactory(param -> param.getValue().reservationTimeProperty());
+            col_reservation_slot.setCellValueFactory(param -> param.getValue().reservationTimeProperty());
             col_reserved_at.setCellValueFactory(param -> param.getValue().reservedAtProperty());
             table_reservation.setItems(list);
             col_cancel_reservation.setCellFactory(param -> new TableCell<>() {

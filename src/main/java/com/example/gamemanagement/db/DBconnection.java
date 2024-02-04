@@ -10,11 +10,9 @@ public class DBconnection {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gamemanagement", "root", "191395");
-            System.out.println("Connected");
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public static DBconnection getInstance(){

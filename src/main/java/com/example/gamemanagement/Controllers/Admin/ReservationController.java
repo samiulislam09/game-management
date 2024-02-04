@@ -18,7 +18,6 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ReservationController implements Initializable {
-//    public TableColumn<Reservation, String> col_id;
     public TableColumn<Reservation, String> col_game_name;
     public TableColumn<Reservation, String> col_cancel_reservation;
     public Label error_label;

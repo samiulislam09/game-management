@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -16,10 +17,11 @@
      <columns>
        <TableColumn fx:id="col_game_name" prefWidth="128.79996490478516" text="Game Name" />
          <TableColumn fx:id="col_reservation_date" prefWidth="144.0" text="Reservation Date" />
-         <TableColumn fx:id="col_reservation_time" prefWidth="175.19998168945312" text="Reservation Time" />
+         <TableColumn fx:id="col_reservation_slot" prefWidth="175.19998168945312" text="Slot" />
          <TableColumn fx:id="col_reserved_at" minWidth="0.0" prefWidth="156.79998779296875" text="Reserved At" />
          <TableColumn fx:id="col_cancel_reservation" minWidth="0.0" prefWidth="151.20001220703125" text="Cancel Reservation" />
      </columns>
    </TableView>
    <Label fx:id="error_label" layoutX="27.0" layoutY="56.0" prefHeight="18.0" prefWidth="805.0" />
+   <Button fx:id="btn_refresh" layoutX="8.0" layoutY="53.0" mnemonicParsing="false" text="Refresh" />
 </AnchorPane>
