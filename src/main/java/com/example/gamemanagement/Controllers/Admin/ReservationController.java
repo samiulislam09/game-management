@@ -55,23 +55,29 @@ public class ReservationController implements Initializable {
             {
                 cancel.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 10px; -fx-max-width: 100px");
             }
-
-
             {
                 cancel.setOnAction(event -> {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Delete Reservation");
+                    alert.setHeaderText("Delete Reservation");
+                    alert.setContentText("Are you sure you want to delete this reservation?");
                     Reservation reservation = getTableView().getItems().get(getIndex());
-                    try {
-                        Connection connection = DBconnection.getInstance().getConnection();
-                        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM reservations WHERE id = ?");
-                        preparedStatement.setObject(1, reservation.getReservationId());
-                        preparedStatement.executeUpdate();
-                        error_label.setText("Reservation cancelled successfully");
-                        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), event1 -> error_label.setText("")));
-                        timeline.play();
-                        table();
-                    } catch (SQLException throwable) {
-                        throwable.printStackTrace();
-                    }
+                    alert.showAndWait().ifPresent(response -> {
+                        if (response == javafx.scene.control.ButtonType.OK) {
+                            try {
+                                Connection connection = DBconnection.getInstance().getConnection();
+                                PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM reservations WHERE id = ?");
+                                preparedStatement.setObject(1, reservation.getReservationId());
+                                preparedStatement.executeUpdate();
+                                error_label.setText("Reservation cancelled successfully");
+                                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), event1 -> error_label.setText("")));
+                                timeline.play();
+                                table();
+                            } catch (SQLException throwable) {
+                                throwable.printStackTrace();
+                            }
+                        }
+                    });
                 });
             }
 

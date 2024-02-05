@@ -11,13 +11,13 @@
       <font>
          <Font name="Arial Bold" size="18.0" />
       </font></Label>
-   <TableView fx:id="table_reservation" layoutX="8.0" layoutY="91.0" prefHeight="600.0" prefWidth="834.0">
+   <TableView fx:id="table_reservation" layoutX="8.0" layoutY="91.0" prefHeight="600.0" prefWidth="806.0">
       <columns>
          <TableColumn fx:id="col_game_name" prefWidth="172.79999351501465" style="-fx-alignment: CENTER;" text="Game Name" />
-         <TableColumn fx:id="col_reservation_date" prefWidth="127.20001220703125" style="-fx-alignment: CENTER;" text="Reserved At" />
-         <TableColumn fx:id="col_reservation_time" minWidth="0.0" prefWidth="168.79998779296875" style="-fx-alignment: CENTER;" text="Reservation Time" />
-         <TableColumn fx:id="col_reserved_at" minWidth="0.0" prefWidth="182.39993286132812" style="-fx-alignment: CENTER;" text="Reservation Date" />
-         <TableColumn fx:id="col_cancel_reservation" maxWidth="439.1999816894531" minWidth="0.0" prefWidth="183.19989013671875" style="-fx-alignment: CENTER;" text="Cancel Reservation" />
+         <TableColumn fx:id="col_reservation_date" prefWidth="108.79995727539062" style="-fx-alignment: CENTER;" text="Reserved At" />
+         <TableColumn fx:id="col_reservation_time" minWidth="0.0" prefWidth="161.5999755859375" style="-fx-alignment: CENTER;" text="Reservation Time" />
+         <TableColumn fx:id="col_reserved_at" minWidth="0.0" prefWidth="153.5999755859375" style="-fx-alignment: CENTER;" text="Reservation Date" />
+         <TableColumn fx:id="col_cancel_reservation" maxWidth="439.1999816894531" minWidth="0.0" prefWidth="200.800048828125" style="-fx-alignment: CENTER;" text="Cancel Reservation" />
       </columns>
    </TableView>
    <Label fx:id="error_label" layoutX="27.0" layoutY="56.0" prefHeight="18.0" prefWidth="805.0" />

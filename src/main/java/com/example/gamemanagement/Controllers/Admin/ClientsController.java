@@ -39,6 +39,9 @@ public class ClientsController implements Initializable {
 
         col_delete.setCellFactory(param -> new TableCell<>() {
             private final Button deleteButton = new Button("Delete");
+            {
+                deleteButton.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 10px; -fx-max-width: 100px");
+            }
 
             @Override
             protected void updateItem(String item, boolean empty) {

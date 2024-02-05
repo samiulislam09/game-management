@@ -15,10 +15,10 @@
       </font></Label>
    <TableView fx:id="table_games" layoutX="349.0" layoutY="97.0" prefHeight="569.0" prefWidth="438.0">
      <columns>
-       <TableColumn fx:id="col_id" prefWidth="57.60003662109375" style="-fx-alignment: CENTER;" text="ID" />
-       <TableColumn fx:id="col_name" prefWidth="159.199951171875" style="-fx-alignment: CENTER;" text="Name" />
-       <TableColumn fx:id="col_capacity" prefWidth="109.4000244140625" style="-fx-alignment: CENTER;" text="Capacity" />
-       <TableColumn fx:id="col_delete" minWidth="0.0" prefWidth="112.20001220703125" style="-fx-alignment: CENTER;" text="Delete" />
+       <TableColumn fx:id="col_name" prefWidth="83.20001220703125" style="-fx-alignment: CENTER;" text="Name" />
+       <TableColumn fx:id="col_capacity" prefWidth="113.60003662109375" style="-fx-alignment: CENTER;" text="Capacity" />
+       <TableColumn fx:id="col_board_quantity" minWidth="0.0" prefWidth="128.0" style="-fx-alignment: CENTER;" text="Board Quantity" />
+         <TableColumn fx:id="col_delete" minWidth="0.0" prefWidth="106.39996337890625" style="-fx-alignment: CENTER;" text="Delete" />
      </columns>
    </TableView>
     <AnchorPane layoutX="14.0" layoutY="97.0" prefHeight="386.0" prefWidth="322.0" style="-fx-background-color: #00b4d8; -fx-background-radius: 5;">

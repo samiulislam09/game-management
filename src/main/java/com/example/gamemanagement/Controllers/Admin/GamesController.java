@@ -21,7 +21,6 @@ import java.util.ResourceBundle;
 public class GamesController implements Initializable {
 
     public TableView<Games> table_games;
-    public TableColumn<Games, String> col_id;
     public TableColumn<Games, String> col_name;
     public TableColumn<Games, String> col_capacity;
     public TableColumn col_delete;
@@ -30,6 +29,7 @@ public class GamesController implements Initializable {
     public Button add_btn;
     public Label error_label;
     public TextField board_quantity;
+    public TableColumn<Games, String> col_board_quantity;
 
 
     public void onAdd(ActionEvent actionEvent) throws SQLException {
@@ -49,6 +49,7 @@ public class GamesController implements Initializable {
         preparedStatement.setObject(1, name);
         preparedStatement.setObject(2, input_capacity.getText());
         preparedStatement.setObject(3, board_quantity.getText());
+
         int err = preparedStatement.executeUpdate();
 
         if(err != 0){
@@ -70,19 +71,17 @@ public class GamesController implements Initializable {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM games");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-                list.add(new Games(resultSet.getString("id"), resultSet.getString("name"), resultSet.getString("capacity")));
+                list.add(new Games(resultSet.getString("id"), resultSet.getString("name"), resultSet.getString("capacity"), resultSet.getString("boardQuantity")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        col_id.setCellValueFactory(data -> data.getValue().idProperty());
         col_name.setCellValueFactory(data -> data.getValue().nameProperty());
         col_capacity.setCellValueFactory(data -> data.getValue().capacityProperty());
+        col_board_quantity.setCellValueFactory(data -> data.getValue().boardQuantityProperty());
         table_games.setItems(list);
-
         col_delete.setCellFactory(param -> new TableCell<Games, String>() {
             private final Button deleteButton = new Button("Delete");
-
                 {
                     deleteButton.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 10px; -fx-max-width: 100px");
                 }
@@ -100,7 +99,7 @@ public class GamesController implements Initializable {
                         alert.setHeaderText("Delete Game");
                         alert.setContentText("Are you sure you want to delete the game?");
                         alert.showAndWait().ifPresent(response -> {
-                            if (response == javafx.scene.control.ButtonType.OK) {
+                            if (response == ButtonType.OK) {
                                 try {
                                     Connection connection = DBconnection.getInstance().getConnection();
                                     PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM games WHERE id = ?");

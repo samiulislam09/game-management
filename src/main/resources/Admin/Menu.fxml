@@ -1,30 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="180.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Admin.MenuController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="180.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Admin.MenuController">
     <AnchorPane prefHeight="632.0" prefWidth="180.0">
-        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
-            <Button fx:id="dashboard_btn" mnemonicParsing="false" prefWidth="160.0" text="Dashboard">
+        <VBox layoutX="11.2" layoutY="11.2" prefHeight="603.0" prefWidth="158.0" style="-fx-border-color: #878787; -fx-border-radius: 5;" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="11.0">
+            <Button fx:id="dashboard_btn" mnemonicParsing="false" prefWidth="160.0" style="-fx-background-color: #878787;" text="Dashboard" textFill="WHITE">
                 <VBox.margin>
                     <Insets bottom="10.0" />
-                </VBox.margin></Button>
-            <Button fx:id="games_btn" mnemonicParsing="false" prefWidth="160.0" text="Games">
+                </VBox.margin>
+            <font>
+               <Font name="Arial Bold" size="12.0" />
+            </font></Button>
+            <Button fx:id="games_btn" mnemonicParsing="false" prefWidth="160.0" style="-fx-background-color: #878787;" text="Games" textFill="WHITE">
                 <VBox.margin>
                     <Insets bottom="10.0" />
-                </VBox.margin></Button>
-            <Button fx:id="reservations_btn" mnemonicParsing="false" prefWidth="160.0" text="Reservations">
+                </VBox.margin>
+            <font>
+               <Font name="Arial Bold" size="12.0" />
+            </font></Button>
+            <Button fx:id="reservations_btn" mnemonicParsing="false" prefWidth="160.0" style="-fx-background-color: #878787;" text="Reservations" textFill="WHITE">
                 <VBox.margin>
                     <Insets bottom="10.0" />
-                </VBox.margin></Button>
-         <Button fx:id="clients_btn" layoutX="10.0" layoutY="82.0" mnemonicParsing="false" prefWidth="160.0" text="Clients">
+                </VBox.margin>
+            <font>
+               <Font name="Arial Bold" size="12.0" />
+            </font></Button>
+         <Button fx:id="clients_btn" layoutX="10.0" layoutY="82.0" mnemonicParsing="false" prefWidth="160.0" style="-fx-background-color: #878787;" text="Clients" textFill="WHITE">
             <VBox.margin>
                <Insets bottom="10.0" />
             </VBox.margin>
+            <font>
+               <Font name="Arial Bold" size="12.0" />
+            </font>
          </Button>
-            <Button fx:id="logout_btn" mnemonicParsing="false" prefWidth="160.0" text="Log Out" />
+            <Button fx:id="logout_btn" mnemonicParsing="false" prefWidth="160.0" style="-fx-background-color: #f73173;" text="Log Out" textFill="WHITE">
+            <font>
+               <Font name="Arial Bold" size="12.0" />
+            </font></Button>
+         <padding>
+            <Insets left="5.0" right="5.0" top="50.0" />
+         </padding>
         </VBox>
     </AnchorPane>
 </VBox>

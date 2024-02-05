@@ -24,6 +24,7 @@ public class ReserveController implements Initializable {
     public Button reserve_btn;
     public ChoiceBox slot_choice_box;
     public Label error_msg;
+    public ChoiceBox board_number;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -97,6 +98,14 @@ public class ReserveController implements Initializable {
                 timeline.play();
                 return;
             }
+            if(reservation_date.getValue().isBefore(java.time.LocalDate.now())){
+                error_msg.setText("You can't reserve a slot for the past date!!!");
+                error_msg.setStyle("-fx-text-fill: red");
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_msg.setText("")));
+                timeline.setCycleCount(1);
+                timeline.play();
+                return;
+            }
 
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO reservations (reservationId, gameName, reservationDate, slot) VALUES (?,?,?,?)");
             preparedStatement.setString(1, userId);
@@ -120,6 +129,7 @@ public class ReserveController implements Initializable {
 
     public void dropDownData(){
         ObservableList list = FXCollections.observableArrayList();
+        String boardQuantity = "";
         try {
             Connection connection = DBconnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM games");
@@ -129,6 +139,7 @@ public class ReserveController implements Initializable {
                 list.replaceAll(s -> s.toString().replaceAll("[\\[\\]]", ""));
             }
             games_dropdown.setItems(list);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
