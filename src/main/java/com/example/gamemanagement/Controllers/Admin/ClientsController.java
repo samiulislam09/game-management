@@ -25,7 +25,7 @@ public class ClientsController implements Initializable {
         ObservableList<Clients> list = FXCollections.observableArrayList();
         try {
             Connection connection = DBconnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users where isadmin=0");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users where isadmin IS NULL");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 list.add(new Clients(resultSet.getString("id"), resultSet.getString("username")));

@@ -1,11 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Admin.DashboardController">
-   <children>
-      <Label layoutX="286.0" layoutY="22.0" text="Dashboard" />
-   </children>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Admin.DashboardController" >
+    <VBox alignment="CENTER" layoutX="123.0" layoutY="147.0" prefHeight="152.0" prefWidth="266.0" style="-fx-border-radius: 5; -fx-border-color: #878787;" styleClass="dashboard_vbox">
+        <Label text="Total Available games">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="available_games" text="0">
+            <font>
+                <Font name="Arial Bold" size="38.0" />
+            </font>
+        </Label>
+    </VBox>
+    <VBox alignment="CENTER" layoutX="485.0" layoutY="147.0" prefHeight="152.0" prefWidth="266.0" style="-fx-border-radius: 5; -fx-border-color: #878787;" styleClass="dashboard_vbox">
+        <Label alignment="CENTER" contentDisplay="CENTER" text="Total Available Slots">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="available_slot" text="0" textAlignment="CENTER">
+            <font>
+                <Font name="Arial Bold" size="38.0" />
+            </font>
+        </Label>
+    </VBox>
+    <VBox alignment="CENTER" layoutX="123.0" layoutY="350.0" prefHeight="152.0" prefWidth="266.0" style="-fx-border-radius: 5; -fx-border-color: #878787;" styleClass="dashboard_vbox">
+        <Label text="Total Clients">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="client_count" text="0">
+            <font>
+                <Font name="Arial Bold" size="38.0" />
+            </font>
+        </Label>
+    </VBox>
+    <VBox alignment="CENTER" layoutX="485.0" layoutY="350.0" prefHeight="152.0" prefWidth="266.0" style="-fx-border-radius: 5; -fx-border-color: #878787;" styleClass="dashboard_vbox">
+        <Label text="Remaining Slots">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="remaining_slots" text="0">
+            <font>
+                <Font name="Arial Bold" size="38.0" />
+            </font>
+        </Label>
+    </VBox>
 </AnchorPane>

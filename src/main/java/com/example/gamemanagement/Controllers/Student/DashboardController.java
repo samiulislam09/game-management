@@ -15,7 +15,7 @@ public class DashboardController implements Initializable {
     public Label available_games;
     public Label available_slot;
     public Label reserved_by_me;
-    public Label available_game;
+    public Label remaining_slots;
 
 
     @Override
@@ -30,12 +30,23 @@ public class DashboardController implements Initializable {
                 availableGames++;
             }
             // Get the total number of slots
-            preparedStatement = connection.prepareStatement("SELECT * FROM reservations");
+            preparedStatement = connection.prepareStatement("SELECT * FROM games");
             resultSet = preparedStatement.executeQuery();
             int availableSlots = 0;
             while (resultSet.next()){
-                availableSlots++;
+                int capacity = Integer.parseInt(resultSet.getString("capacity"));
+                int boardQuantity = Integer.parseInt(resultSet.getString("boardQuantity"));
+                availableSlots = availableSlots + (capacity * boardQuantity);
             }
+            // get total number of games reserved
+            preparedStatement = connection.prepareStatement("SELECT * FROM reservations");
+            resultSet = preparedStatement.executeQuery();
+            int remaining = 0;
+            while (resultSet.next()){
+                remaining++;
+            }
+            remaining_slots.setText(String.valueOf(availableSlots-remaining));
+
             // Get the total number of games reserved by the user
             preparedStatement = connection.prepareStatement("SELECT * FROM reservations WHERE reservationId = ?");
             preparedStatement.setObject(1, UserInfo.getInstance().getUserId());
