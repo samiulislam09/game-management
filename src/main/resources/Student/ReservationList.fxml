@@ -22,6 +22,9 @@
          <TableColumn fx:id="col_cancel_reservation" minWidth="0.0" prefWidth="151.20001220703125" style="-fx-alignment: CENTER;" text="Cancel Reservation" />
      </columns>
    </TableView>
-   <Label fx:id="error_label" layoutX="27.0" layoutY="56.0" prefHeight="18.0" prefWidth="805.0" />
+   <Label fx:id="error_label" layoutX="111.0" layoutY="56.0" prefHeight="18.0" prefWidth="722.0">
+      <font>
+         <Font name="Arial Bold" size="14.0" />
+      </font></Label>
    <Button fx:id="btn_refresh" layoutX="8.0" layoutY="53.0" mnemonicParsing="false" text="Refresh" />
 </AnchorPane>

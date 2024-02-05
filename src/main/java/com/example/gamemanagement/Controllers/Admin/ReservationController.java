@@ -52,6 +52,9 @@ public class ReservationController implements Initializable {
         table_reservation.setItems(list);
         col_cancel_reservation.setCellFactory(param -> new TableCell<>() {
             private final Button cancel = new Button("Cancel");
+            {
+                cancel.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 10px; -fx-max-width: 100px");
+            }
 
 
             {

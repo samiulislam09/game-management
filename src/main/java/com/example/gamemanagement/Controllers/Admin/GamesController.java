@@ -29,21 +29,33 @@ public class GamesController implements Initializable {
     public TextField input_capacity;
     public Button add_btn;
     public Label error_label;
+    public TextField board_quantity;
 
 
     public void onAdd(ActionEvent actionEvent) throws SQLException {
+        if(input_name.getText().isEmpty() || input_capacity.getText().isEmpty() || board_quantity.getText().isEmpty()){
+            error_label.setText("Please fill all the fields!!");
+            {
+                error_label.setStyle("-fx-text-fill: red");
+            }
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_label.setText("")));
+            timeline.setCycleCount(1);
+            timeline.play();
+            return;
+        }
         String name = input_name.getText();
-        String capacity = input_capacity.getText();
         Connection connection = DBconnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO games(name, capacity) values (?, ?)");
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO games(name, capacity, boardQuantity) values (?, ?, ?)");
         preparedStatement.setObject(1, name);
-        preparedStatement.setObject(2, capacity);
+        preparedStatement.setObject(2, input_capacity.getText());
+        preparedStatement.setObject(3, board_quantity.getText());
         int err = preparedStatement.executeUpdate();
 
         if(err != 0){
             error_label.setText("Games added Successfully");
             input_name.setText("");
             input_capacity.setText("");
+            board_quantity.setText("");
             table();
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_label.setText("")));
             timeline.setCycleCount(1);
@@ -70,6 +82,10 @@ public class GamesController implements Initializable {
 
         col_delete.setCellFactory(param -> new TableCell<Games, String>() {
             private final Button deleteButton = new Button("Delete");
+
+                {
+                    deleteButton.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 10px; -fx-max-width: 100px");
+                }
 
             @Override
             protected void updateItem(String item, boolean empty) {

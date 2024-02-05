@@ -37,14 +37,14 @@ public class Reservation extends Games {
     public void setReservationDate(String newDate) { reservationDate.set(newDate); }
     public StringProperty reservationTimeProperty() {
         return switch (reservationTime.get()) {
-            case "1" -> new SimpleStringProperty("10:00-10:59");
-            case "2" -> new SimpleStringProperty("11:00-11:59");
-            case "3" -> new SimpleStringProperty("12:00-12:59");
-            case "4" -> new SimpleStringProperty("13:00-13:59");
-            case "5" -> new SimpleStringProperty("14:00-14:59");
-            case "6" -> new SimpleStringProperty("15:00-15:59");
-            case "7" -> new SimpleStringProperty("16:00-16:59");
-            default -> new SimpleStringProperty("Invalid time");
+            case "1" -> new SimpleStringProperty("10:00-10:59[slot 1]");
+            case "2" -> new SimpleStringProperty("11:00-11:59[slot 2]");
+            case "3" -> new SimpleStringProperty("12:00-12:59[slot 3]");
+            case "4" -> new SimpleStringProperty("13:00-13:59[slot 4]");
+            case "5" -> new SimpleStringProperty("14:00-14:59[slot 5]");
+            case "6" -> new SimpleStringProperty("15:00-15:59[slot 6]");
+            case "7" -> new SimpleStringProperty("16:00-16:59[slot 7]");
+            default -> new SimpleStringProperty("Invalid time[slot 8]");
         };
     }
     public void setReservationTime(String newTime) { reservationTime.set(newTime); }
