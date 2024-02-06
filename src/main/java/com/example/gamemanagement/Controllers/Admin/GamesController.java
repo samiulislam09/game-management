@@ -30,6 +30,7 @@ public class GamesController implements Initializable {
     public Label error_label;
     public TextField board_quantity;
     public TableColumn<Games, String> col_board_quantity;
+    public Button update_btn;
 
 
     public void onAdd(ActionEvent actionEvent) throws SQLException {
@@ -123,8 +124,40 @@ public class GamesController implements Initializable {
                 }
             }
         });
+        table_games.setOnMouseClicked(event -> {
+            Games games = table_games.getSelectionModel().getSelectedItem();
+            input_name.setText(games.getName());
+            input_capacity.setText(games.getCapacity());
+            board_quantity.setText(games.getBoardQuantity());
+        });
+        update_btn.setOnAction(event -> {
+            try {
+                int err = getErr();
+                if(err != 0){
+                    error_label.setText("Games updated Successfully");
+                    table();
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_label.setText("")));
+                    timeline.setCycleCount(1);
+                    timeline.play();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+
+
     }
 
+    private int getErr() throws SQLException {
+        Connection connection = DBconnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE games SET name = ?, capacity = ?, boardQuantity = ? WHERE name = ?");
+        preparedStatement.setObject(1, input_name.getText());
+        preparedStatement.setObject(2, input_capacity.getText());
+        preparedStatement.setObject(3, board_quantity.getText());
+        preparedStatement.setObject(4, input_name.getText());
+        int err = preparedStatement.executeUpdate();
+        return err;
+    }
 
 
     @Override

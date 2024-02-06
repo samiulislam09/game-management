@@ -20,6 +20,7 @@ public class ClientsController implements Initializable {
     public TableColumn<Clients, String> col_username;
     public TableColumn<Clients, String> col_delete;
     public Label error_label;
+    public TableColumn col_update;
 
     public void table(){
         ObservableList<Clients> list = FXCollections.observableArrayList();
@@ -36,7 +37,6 @@ public class ClientsController implements Initializable {
         col_id.setCellValueFactory(data -> data.getValue().idProperty());
         col_username.setCellValueFactory(data -> data.getValue().nameProperty());
         Users_list.setItems(list);
-
         col_delete.setCellFactory(param -> new TableCell<>() {
             private final Button deleteButton = new Button("Delete");
             {
@@ -74,8 +74,6 @@ public class ClientsController implements Initializable {
                 });
             }
         });
-
-
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
