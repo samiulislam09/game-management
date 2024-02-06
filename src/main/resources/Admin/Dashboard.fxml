@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Admin.DashboardController" >
+<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamemanagement.Controllers.Admin.DashboardController">
     <VBox alignment="CENTER" layoutX="123.0" layoutY="147.0" prefHeight="152.0" prefWidth="266.0" style="-fx-border-radius: 5; -fx-border-color: #878787;" styleClass="dashboard_vbox">
         <Label text="Total Available games">
             <font>
@@ -54,4 +53,9 @@
             </font>
         </Label>
     </VBox>
+   <Label layoutX="306.0" layoutY="37.0" text="Dashboard">
+      <font>
+         <Font name="Arial Bold" size="36.0" />
+      </font>
+   </Label>
 </AnchorPane>

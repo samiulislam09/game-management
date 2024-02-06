@@ -49,6 +49,14 @@ public class SignUpController {
         int err = preparedStatement.executeUpdate();
         if(err != 0){
             error_lbl.setText("User Created Successfully");
+            username_field.setText("");
+            password_field.setText("");
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_lbl.setText("")));
+            timeline.setCycleCount(1);
+            timeline.play();
+        }
+        else {
+            error_lbl.setText("Error Creating User");
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_lbl.setText("")));
             timeline.setCycleCount(1);
             timeline.play();

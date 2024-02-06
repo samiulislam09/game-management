@@ -12,9 +12,8 @@
    <TableView fx:id="Users_list" layoutX="81.0" layoutY="94.0" prefHeight="581.0" prefWidth="646.0">
      <columns>
        <TableColumn fx:id="col_id" prefWidth="107.20001220703125" style="-fx-alignment: CENTER;" text="ID" />
-       <TableColumn fx:id="col_username" prefWidth="238.0" style="-fx-alignment: CENTER;" text="Username" />
-         <TableColumn fx:id="col_delete" minWidth="0.0" prefWidth="144.39996337890625" style="-fx-alignment: CENTER;" text="Delete User" />
-         <TableColumn fx:id="col_update" minWidth="0.0" prefWidth="144.39996337890625" style="-fx-alignment: CENTER;" text="Update User" />
+       <TableColumn fx:id="col_username" prefWidth="266.4000244140625" style="-fx-alignment: CENTER;" text="Username" />
+         <TableColumn fx:id="col_delete" minWidth="0.0" prefWidth="187.20001220703125" style="-fx-alignment: CENTER;" text="Delete User" />
      </columns>
    </TableView>
    <Label fx:id="error_label" layoutX="81.0" layoutY="66.0" />

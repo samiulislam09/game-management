@@ -40,4 +40,12 @@ public class Clients {
     public ObservableValue<String> nameProperty() {
         return username;
     }
+
+    public String getName() {
+        return username.get();
+    }
+
+    public void setName(String response) {
+        this.username.set(response);
+    }
 }

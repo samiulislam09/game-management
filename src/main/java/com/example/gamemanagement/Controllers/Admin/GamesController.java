@@ -19,7 +19,6 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class GamesController implements Initializable {
-
     public TableView<Games> table_games;
     public TableColumn<Games, String> col_name;
     public TableColumn<Games, String> col_capacity;
@@ -44,8 +43,19 @@ public class GamesController implements Initializable {
             timeline.play();
             return;
         }
-        String name = input_name.getText();
+        // if name already exists in the database then return
         Connection connection = DBconnection.getInstance().getConnection();
+        PreparedStatement preparedStatement1 = connection.prepareStatement("SELECT * FROM games WHERE name = ?");
+        preparedStatement1.setObject(1, input_name.getText());
+        ResultSet resultSet = preparedStatement1.executeQuery();
+        if(resultSet.next()){
+            error_label.setText("Game already exists");
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_label.setText("")));
+            timeline.setCycleCount(1);
+            timeline.play();
+            return;
+        }
+        String name = input_name.getText();
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO games(name, capacity, boardQuantity) values (?, ?, ?)");
         preparedStatement.setObject(1, name);
         preparedStatement.setObject(2, input_capacity.getText());
