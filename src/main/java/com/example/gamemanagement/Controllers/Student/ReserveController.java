@@ -90,7 +90,7 @@ public class ReserveController implements Initializable {
                 return;
             }
 
-            if (count >= capacity){
+            if (count > capacity){
                 error_msg.setText("Slot is full. Please select another slot!!!");
                 error_msg.setStyle("-fx-text-fill: red");
                 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> error_msg.setText("")));
